@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
+        app:cardMaxElevation="8dp"
+        android:foreground="?attr/selectableItemBackground">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/list_item_pic"
+                android:scaleType="centerCrop"
+                android:src="@drawable/test_pic1"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"/>
+            <RelativeLayout
+                android:layout_below="@id/list_item_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/list_item_primarytitle"
+                    android:layout_width="match_parent"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_height="40dp"
+                    android:text="理想到底能走多远？"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:id="@+id/list_item_subtitle"
+                    android:layout_below="@id/list_item_primarytitle"
+                    android:layout_alignLeft="@id/list_item_primarytitle"
+                    android:textSize="16sp"
+                    android:text="你劝我灭了心中的火。 "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/list_item_date"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBottom="@id/list_item_subtitle"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:text="April 7"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</FrameLayout>
