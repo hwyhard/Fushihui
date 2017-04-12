@@ -1,4 +1,4 @@
-package com.hwyhard.www.fushihui;
+package com.hwyhard.www.fushihui.bean;
 
 /**
  * Created by hwyhard on 17/4/7.

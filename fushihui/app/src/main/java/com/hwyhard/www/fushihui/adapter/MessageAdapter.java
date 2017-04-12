@@ -1,10 +1,14 @@
-package com.hwyhard.www.fushihui;
+package com.hwyhard.www.fushihui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hwyhard.www.fushihui.R;
+import com.hwyhard.www.fushihui.bean.MessageBean;
+import com.hwyhard.www.fushihui.viewholder.MessageViewHolder;
 
 import java.util.List;
 
@@ -18,7 +22,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder>{
     //实体类的消息列表
     private List<MessageBean> messageBeanList;
     //构造方法
-    MessageAdapter(List<MessageBean> list){
+    public MessageAdapter(List<MessageBean> list){
         messageBeanList = list;
     }
     @Override
