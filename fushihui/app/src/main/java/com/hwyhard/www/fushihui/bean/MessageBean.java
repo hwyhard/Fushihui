@@ -6,16 +6,27 @@ package com.hwyhard.www.fushihui.bean;
  */
 
 public class MessageBean {
-    private int itemPic;//消息的图片
+    private String itemPic;//消息的图片
     private String itemPrimaryTitle;//主标题
     private String itemSubtitle;//副标题
     private String itemDate;//日期
 
-    public void setItemPic(int itemPic) {
+    //初始化构造方法
+    public MessageBean(String itemPic, String itemPrimaryTitle, String itemSubtitle, String itemDate){
+        this.itemPic = itemPic;
+        this.itemPrimaryTitle = itemPrimaryTitle;
+        this.itemSubtitle = itemSubtitle;
+        this.itemDate = itemDate;
+    }
+    public MessageBean(String itemPic){
         this.itemPic = itemPic;
     }
 
-    public int getItemPic() {
+    public void setItemPic(String itemPic) {
+        this.itemPic = itemPic;
+    }
+
+    public String getItemPic() {
         return itemPic;
     }
 
