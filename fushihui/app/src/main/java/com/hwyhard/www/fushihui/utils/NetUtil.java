@@ -1,4 +1,4 @@
-package com.hwyhard.www.fushihui.netUtils;
+package com.hwyhard.www.fushihui.utils;
 
 /**
  * Created by hwyhard on 17/4/14.
