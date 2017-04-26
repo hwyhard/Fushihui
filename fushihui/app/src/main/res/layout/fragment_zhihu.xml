@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="知乎日报页面"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textSize="24sp"
-        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/zhihuRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

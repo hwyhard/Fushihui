@@ -63,7 +63,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder>{
                 @Override
                 public void onClick(View view) {
                     int position = holder.getLayoutPosition();
-                    onItemClickListener .onItemClick(holder.itemView,position);
+                    onItemClickListener.onItemClick(holder.itemView,position);
                 }
             });
         }

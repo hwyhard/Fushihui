@@ -51,7 +51,6 @@ public class MainFragment extends Fragment{
             public void onItemClick(View view, int position) {
                 Toast.makeText(mContext,"click----->"+position,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext,ItemActivity.class);
-
                 startActivity(intent);
             }
         });
