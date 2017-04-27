@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.hwyhard.www.fushihui.R;
-import com.hwyhard.www.fushihui.activity.ItemActivity;
+import com.hwyhard.www.fushihui.activity.ZhiHuActivity;
 import com.hwyhard.www.fushihui.adapter.ZhiHuTitleAdapter;
 import com.hwyhard.www.fushihui.bean.ZhiHuBean;
 import com.hwyhard.www.fushihui.utils.NetUtil;
@@ -38,6 +38,7 @@ public class ZhiHuFragment extends Fragment{
     Handler handler;
     List<ZhiHuBean.ZhiHuStory> zhiHuStoryList;
     ZhiHuTitleAdapter zhiHuTitleAdapter;
+    final static String TITLE_ID = "titleId";
 //    Dog dog;
 //    ArrayList<String> color;
     @Nullable
@@ -77,7 +78,14 @@ public class ZhiHuFragment extends Fragment{
                             zhiHuTitleAdapter.setOnItemCliclListener(new ZhiHuTitleAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View itemView, int position) {
-                                    Intent intent = new Intent(mContext, ItemActivity.class);
+                                    //获取该条title的id
+                                    int titleId = zhiHuStoryList.get(position).getId();
+                                    Log.d("ZhiHuId",titleId+"");
+                                    Bundle bundle = new Bundle();
+                                    //用bundle传出去
+                                    bundle.putInt(TITLE_ID,titleId);
+                                    Intent intent = new Intent(mContext, ZhiHuActivity.class);
+                                    intent.putExtras(bundle);
                                     startActivity(intent);
                                 }
                             });
