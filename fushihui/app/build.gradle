@@ -32,5 +32,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.android.support:design:25.3.0'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.2'
     testCompile 'junit:junit:4.12'
 }

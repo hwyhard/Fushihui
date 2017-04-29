@@ -26,16 +26,17 @@ import java.util.List;
  * 主要的fragment页面
  */
 
-public class MainFragment extends Fragment{
+public class MainFragment extends Fragment {
     RecyclerView messageRv;
     //创建测试用的url的数组
     String testUrl[] = new String[13];
     LinearLayoutManager linearLayoutManager;
     Context mContext;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main,null);
+        View view = inflater.inflate(R.layout.fragment_main, null);
         messageRv = (RecyclerView) view.findViewById(R.id.main_rv_list);
         mContext = getActivity();//获得上下文
         //初始化布局管理器
@@ -49,8 +50,8 @@ public class MainFragment extends Fragment{
         messageAdapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(mContext,"click----->"+position,Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext,ItemActivity.class);
+                Toast.makeText(mContext, "click----->" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ItemActivity.class);
                 startActivity(intent);
             }
         });
@@ -59,26 +60,28 @@ public class MainFragment extends Fragment{
         return view;
 
     }
+
     private List<MessageBean> createBeanList(int num) {
         List<MessageBean> list = new ArrayList<>();
-        for(int i=0; i<num; i++) {
-            if(i<13) {
+        for (int i = 0; i < num; i++) {
+            if (i < 13) {
                 MessageBean messageBean = new MessageBean(testUrl[i], "爱要怎么说出口" + i, "你劝我灭了心中的火" + i, "April 7" + i);
                 list.add(messageBean);
-            }else {
+            } else {
                 int index = i % 13;
-                MessageBean messageBean = new MessageBean(testUrl[index],"你一直在往我的剑上撞"+i,"死亡如风，常伴吾身"+i,"April 8"+i);
+                MessageBean messageBean = new MessageBean(testUrl[index], "你一直在往我的剑上撞" + i, "死亡如风，常伴吾身" + i, "April 8" + i);
                 list.add(messageBean);
             }
-            Log.d("MainActivityUrl",list.get(i).getItemPic());
+            Log.d("MainActivityUrl", list.get(i).getItemPic());
 
         }
         return list;
     }
+
     //初始化供测试的url
-    private void initUrl(){
-        for(int i=0;i<13;i++) {
-            int index = i+12;
+    private void initUrl() {
+        for (int i = 0; i < 13; i++) {
+            int index = i + 12;
             testUrl[i] = "http://img.ivsky.com/img/bizhi/pre/201406/19/iron_man-0" + index + ".jpg";
         }
     }
