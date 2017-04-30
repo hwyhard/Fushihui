@@ -12,14 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
         <activity android:name=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.ItemActivity" />
+        <activity android:name=".activity.ZhiHuActivity" />
+        <activity android:name=".activity.SplashActivity"
+        android:theme="@style/AppTheme.FullScreen"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ItemActivity" />
-        <activity android:name=".activity.ZhiHuActivity"></activity>
     </application>
 
 </manifest>
