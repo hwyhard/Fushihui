@@ -17,20 +17,23 @@
         android:textStyle="italic"
         android:text="歌名"
         android:layout_alignBottom="@id/music_title_image"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="40dp"
         android:layout_centerHorizontal="true"
         />
     <TextView
         android:id="@+id/music_title_singer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="歌手"
         android:textColor="#424242"
-        android:layout_toRightOf="@id/music_title_name"
-        android:layout_alignBottom="@id/music_title_image"
-        android:layout_marginBottom="60dp"
-        android:layout_marginLeft="20dp"
+        android:shadowColor="#ffffff"
+        android:layout_alignTop="@id/music_title_name"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         />
 
 </RelativeLayout>

@@ -23,6 +23,7 @@ import com.tiancaicc.springfloatingactionmenu.OnMenuActionListener;
 import com.tiancaicc.springfloatingactionmenu.SpringFloatingActionMenu;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,6 +36,8 @@ public class MainFragment extends Fragment {
     //创建测试用的url的数组
     String testUrl[] = new String[13];
     LinearLayoutManager linearLayoutManager;
+    List<MessageBean> list;
+    MessageAdapter messageAdapter;
     View.OnClickListener fabItemClickListener;
     Context mContext;
     private SpringFloatingActionMenu springFloatingActionMenu;
@@ -46,6 +49,7 @@ public class MainFragment extends Fragment {
         mContext = getActivity();//获得上下文
         //初始化布局管理器
         linearLayoutManager = new LinearLayoutManager(mContext);
+        list = new ArrayList<>();
         initUrl();//初始化数据
         //创建FabMenu里Item的监听器
           fabItemClickListener = new View.OnClickListener() {
@@ -67,10 +71,22 @@ public class MainFragment extends Fragment {
         fab.setColorPressedResId(R.color.colorGrayGreen);
         fab.setColorRippleResId(R.color.colorRippleGreen);
         fab.setShadow(true);
+        messageAdapter = new MessageAdapter(createBeanList(100));
         springFloatingActionMenu = new SpringFloatingActionMenu.Builder(mContext)
                 .fab(fab)
                 //添加菜单按钮参数依次是背景颜色，图标，标签，标签的颜色，点击事件
-                .addMenuItem(R.color.colorRandom, R.mipmap.button_random, "随便看看",R.color.colorRandom,fabItemClickListener)
+                .addMenuItem(R.color.colorRandom, R.mipmap.button_random, "随便看看", R.color.colorRandom, new View.OnClickListener() {
+                    @Override
+                    //点击后生成随机列表
+                    public void onClick(View view) {
+                        randomList();
+//                        messageAdapter.notifyDataSetChanged();
+                        messageAdapter = new MessageAdapter(list);
+                        onItemClick();
+                        messageRv.setAdapter(messageAdapter);
+                        springFloatingActionMenu.hideMenu();
+                    }
+                })
                 .addMenuItem(R.color.colorMovie,R.mipmap.button_movie,"影视",R.color.colorLable,fabItemClickListener)
                 .addMenuItem(R.color.colorMusic,R.mipmap.button_music,"音乐",R.color.colorLable,fabItemClickListener)
                 .addMenuItem(R.color.colorBook,R.mipmap.button_book,"阅读",R.color.colorLable,fabItemClickListener)
@@ -97,25 +113,15 @@ public class MainFragment extends Fragment {
         messageRv.setHasFixedSize(true);
         //将布局管理器绑定到视图
         messageRv.setLayoutManager(linearLayoutManager);
-        MessageAdapter messageAdapter = new MessageAdapter(createBeanList(100));
         // 为item设置点击事件
-        messageAdapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(mContext, "click----->" + position, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, ItemActivity.class);
-                startActivity(intent);
-            }
-        });
+        onItemClick();
         //为视图绑定数据监听器
         messageRv.setAdapter(messageAdapter);
         return view;
 
     }
 
-
     private List<MessageBean> createBeanList(int num) {
-        List<MessageBean> list = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             if (i < 13) {
                 MessageBean messageBean = new MessageBean(testUrl[i], "爱要怎么说出口" + i, "你劝我灭了心中的火" + i, "April 7" + i);
@@ -138,7 +144,20 @@ public class MainFragment extends Fragment {
             testUrl[i] = "http://img.ivsky.com/img/bizhi/pre/201406/19/iron_man-0" + index + ".jpg";
         }
     }
-
-
+    //打乱列表生成随机列表
+    public void randomList(){
+        Collections.shuffle(list);
+    }
+    //item点击事件
+    public void onItemClick(){
+        messageAdapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(mContext, "click----->" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ItemActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 }
