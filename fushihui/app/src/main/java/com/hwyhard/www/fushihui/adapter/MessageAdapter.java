@@ -33,6 +33,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder>{
     }
     @Override
     //创建每个item时会用到，返回MessageViewHolder
+
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext =parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);

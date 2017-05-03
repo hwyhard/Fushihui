@@ -27,6 +27,8 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashActivity.this,MainActivity.class);
                 startActivity(intent);
+                //第一次进入后欢迎页Activity关闭
+                SplashActivity.this.finish();
             }
         },2000);//2000ms
 

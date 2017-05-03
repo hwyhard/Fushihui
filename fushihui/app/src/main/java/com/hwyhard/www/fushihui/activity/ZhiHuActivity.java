@@ -38,7 +38,7 @@ public class ZhiHuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zhi_hu);
+        setContentView(R.layout.activity_zhihu);
         Bundle bundle = getIntent().getExtras();
         titleId = bundle.getInt(TITLE_ID);
         netUtil = new NetUtil();

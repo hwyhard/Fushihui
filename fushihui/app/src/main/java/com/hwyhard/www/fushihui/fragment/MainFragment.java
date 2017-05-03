@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import com.hwyhard.www.fushihui.R;
 import com.hwyhard.www.fushihui.activity.ItemActivity;
 import com.hwyhard.www.fushihui.adapter.MessageAdapter;
 import com.hwyhard.www.fushihui.bean.MessageBean;
+import com.melnykov.fab.FloatingActionButton;
+import com.tiancaicc.springfloatingactionmenu.OnMenuActionListener;
+import com.tiancaicc.springfloatingactionmenu.SpringFloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +35,9 @@ public class MainFragment extends Fragment {
     //创建测试用的url的数组
     String testUrl[] = new String[13];
     LinearLayoutManager linearLayoutManager;
+    View.OnClickListener fabItemClickListener;
     Context mContext;
-
+    private SpringFloatingActionMenu springFloatingActionMenu;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +47,53 @@ public class MainFragment extends Fragment {
         //初始化布局管理器
         linearLayoutManager = new LinearLayoutManager(mContext);
         initUrl();//初始化数据
+        //创建FabMenu里Item的监听器
+          fabItemClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                MenuItemView menuItem = (MenuItemView) view;
+//                Toast.makeText(mContext,menuItem.getLabelTextView().getText(),Toast.LENGTH_SHORT);
+                startActivity(new Intent(mContext,ItemActivity.class));
+
+            }
+        };
+        //手动创建fab
+        final FloatingActionButton fab = new FloatingActionButton(mContext);
+        //菜单button大小
+        fab.setType(FloatingActionButton.TYPE_NORMAL);
+        // button icon
+        fab.setImageResource(R.mipmap.button_category);
+        fab.setColorNormalResId(R.color.colorPrimaryGreen);
+        fab.setColorPressedResId(R.color.colorGrayGreen);
+        fab.setColorRippleResId(R.color.colorRippleGreen);
+        fab.setShadow(true);
+        springFloatingActionMenu = new SpringFloatingActionMenu.Builder(mContext)
+                .fab(fab)
+                //添加菜单按钮参数依次是背景颜色，图标，标签，标签的颜色，点击事件
+                .addMenuItem(R.color.colorRandom, R.mipmap.button_random, "随便看看",R.color.colorRandom,fabItemClickListener)
+                .addMenuItem(R.color.colorMovie,R.mipmap.button_movie,"影视",R.color.colorLable,fabItemClickListener)
+                .addMenuItem(R.color.colorMusic,R.mipmap.button_music,"音乐",R.color.colorLable,fabItemClickListener)
+                .addMenuItem(R.color.colorBook,R.mipmap.button_book,"阅读",R.color.colorLable,fabItemClickListener)
+                .addMenuItem(R.color.colorLife,R.mipmap.button_life,"生活",R.color.colorLable,fabItemClickListener)
+                .addMenuItem(R.color.colorHistory,R.mipmap.button_history,"历史",R.color.colorLable,fabItemClickListener)
+                //设置菜单展开后的动画
+                .animationType(SpringFloatingActionMenu.ANIMATION_TYPE_TUMBLR)
+                .revealColor(R.color.colorPrimaryGreen)
+                .gravity(Gravity.RIGHT | Gravity.BOTTOM)
+                .onMenuActionListner(new OnMenuActionListener() {
+                    @Override
+                    public void onMenuOpen() {
+                        fab.setImageResource(R.mipmap.button_cancel);
+                        fab.setColorNormalResId(R.color.colorFabBack);
+                    }
+
+                    @Override
+                    public void onMenuClose() {
+                        fab.setImageResource(R.mipmap.button_category);
+                        fab.setColorNormalResId(R.color.colorPrimaryGreen);
+                    }
+                }).build();
+//        fab.attachToRecyclerView(messageRv);
         messageRv.setHasFixedSize(true);
         //将布局管理器绑定到视图
         messageRv.setLayoutManager(linearLayoutManager);
@@ -60,6 +112,7 @@ public class MainFragment extends Fragment {
         return view;
 
     }
+
 
     private List<MessageBean> createBeanList(int num) {
         List<MessageBean> list = new ArrayList<>();
@@ -85,6 +138,7 @@ public class MainFragment extends Fragment {
             testUrl[i] = "http://img.ivsky.com/img/bizhi/pre/201406/19/iron_man-0" + index + ".jpg";
         }
     }
+
 
 
 }

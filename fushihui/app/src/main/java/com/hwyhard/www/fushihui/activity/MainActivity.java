@@ -5,11 +5,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 
 import com.hwyhard.www.fushihui.R;
 import com.hwyhard.www.fushihui.adapter.MyFragmentAdapter;
-import com.hwyhard.www.fushihui.fragment.DouBanFragment;
+import com.hwyhard.www.fushihui.fragment.MusicFragment;
 import com.hwyhard.www.fushihui.fragment.MainFragment;
 import com.hwyhard.www.fushihui.fragment.ZhiHuFragment;
 
@@ -31,16 +30,17 @@ public class MainActivity extends FragmentActivity {
         //实例化所有的fragment
         MainFragment mainFragment = new MainFragment();
         ZhiHuFragment zhiHuFragment = new ZhiHuFragment();
-        DouBanFragment douBanFragment = new DouBanFragment();
+        MusicFragment musicFragment = new MusicFragment();
         fragmentList.add(mainFragment);
         fragmentList.add(zhiHuFragment);
-        fragmentList.add(douBanFragment);
+        fragmentList.add(musicFragment);
         MyFragmentAdapter myFragmentAdapter = new MyFragmentAdapter(getSupportFragmentManager(),fragmentList);
         tabLayout = (TabLayout) findViewById(R.id.main_tab);
         //为viewpager绑定自定义的适配器
         viewPager.setAdapter(myFragmentAdapter);
         //绑定TabLayout
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
 

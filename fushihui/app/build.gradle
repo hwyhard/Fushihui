@@ -33,5 +33,6 @@ dependencies {
     compile 'com.android.support:design:25.3.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.2'
+    compile 'com.tiancaicc.springfloatingactionmenu:library:0.0.2'
     testCompile 'junit:junit:4.12'
 }

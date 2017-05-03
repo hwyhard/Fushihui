@@ -7,4 +7,16 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGray">#EEEEEE</color>
     <color name="colorSecondGreen">#26A69A</color>
+    <color name="colorGrayGreen">#00695c</color>
+    <color name="colorRippleGreen">#949ca8</color>
+    <color name="colorMovie">#9c27b0</color>
+    <color name="colorBook">#2196f3</color>
+    <color name="colorMusic">#e91e63</color>
+    <color name="colorRandom">#607d8b</color>
+    <color name="colorLife">#FFC107</color>
+    <color name="colorHistory">#795548</color>
+    <color name="colorLable">#f5f5f5</color>
+    <color name="colorMenuBackground">#00695c</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorFabBack">#00796b</color>
 </resources>

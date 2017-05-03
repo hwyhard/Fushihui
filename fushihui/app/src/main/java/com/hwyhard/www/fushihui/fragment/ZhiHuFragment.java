@@ -125,8 +125,8 @@ public class ZhiHuFragment extends Fragment {
         Date date = DateUtil.StringToDate(totalDate);
         date.setDate(date.getDate()-1);
         String newDate = DateUtil.DateToString(date);
-        Log.d("nowDate3",newDate);
         totalDate = newDate;
+        Log.d("NewDateTest",newDate+"");
         beforeUrl = beforeUrlHead + newDate;
         Thread beforeRequsetThread = new Thread(new Runnable() {
             @Override
