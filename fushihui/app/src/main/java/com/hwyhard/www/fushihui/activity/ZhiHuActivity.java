@@ -1,10 +1,13 @@
 package com.hwyhard.www.fushihui.activity;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -38,13 +41,22 @@ public class ZhiHuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //系统大于5.0时隐藏状态栏
+        if(Build.VERSION.SDK_INT > 21){
+            View decorView = getWindow().getDecorView();
+            //让应用主题占据状态栏的空间
+            int open = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(open);
+            //设置状态栏颜色透明
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         setContentView(R.layout.activity_zhihu);
         Bundle bundle = getIntent().getExtras();
         titleId = bundle.getInt(TITLE_ID);
         netUtil = new NetUtil();
         handler = new Handler();
         //隐藏状态栏
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mContext = getApplicationContext();
         Log.d("ZhiHuAc",titleId+"");
         urlHead = "http://news-at.zhihu.com/api/4/news/";

@@ -22,6 +22,22 @@ ImageView imageView;
 //        View decorView = getWindow().getDecorView();
 //        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
 //        decorView.setSystemUiVisibility(uiOptions);
+//        if(Build.VERSION.SDK_INT > 21){
+//            View decorView = getWindow().getDecorView();
+//            //让应用主题占据状态栏的空间
+//            int open = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            decorView.setSystemUiVisibility(open);
+//            //设置状态栏颜色透明
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }
+        //隐藏标题栏
+//        ActionBar actionBar =getSupportActionBar();
+//        actionBar.hide();
+        //更改字体
+//        TextView textView = (TextView) findViewById(R.id.main_item_text);
+//        AssetManager assetManager = getAssets();
+//        Typeface typeface = Typeface.createFromAsset(assetManager,"fonts/xihei.ttf");
+//        textView.setTypeface(typeface);
         imageView = (ImageView) findViewById(R.id.item_activity_pic);
         Glide.with(this).load(R.drawable.test_pic4).into(imageView);
     }

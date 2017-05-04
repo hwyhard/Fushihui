@@ -58,6 +58,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder>{
         holder.itemSubTv.setText(messageBean.getItemSubtitle());
         holder.itemPrimatyTv.setText(messageBean.getItemPrimaryTitle());
         holder.itemDateTv.setText(messageBean.getItemDate());
+        Log.d("NowShowedItem",position+"");
         //实现点击方法的回调
         if(onItemClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {

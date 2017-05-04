@@ -59,14 +59,14 @@ public class MusicFragment extends Fragment{
     }
     public void initSongs(int num){
         musicTitleBeanList.add(new MusicTitleBean("http://uploads.xuexila.com/allimg/1610/884-161019102254.png","单车","陈奕迅"));
-        musicTitleBeanList.add(new MusicTitleBean("https://i.ytimg.com/vi/K2cOfXBwyR4/hqdefault.jpg","可惜没如果","林俊杰"));
+        musicTitleBeanList.add(new MusicTitleBean("http://ntdimg.com/pic/2014/12-25/p5785361a91727456.jpg","可惜没如果","林俊杰"));
         musicTitleBeanList.add(new MusicTitleBean("http://cloudmind.info/wp-content/uploads/2015/04/Love-Story-FanMade-Single-Cover-fearless-taylor-swift-album-14882711-588-588.jpg","Love Story","Taylor Swift"));
-        musicTitleBeanList.add(new MusicTitleBean("https://i.ytimg.com/vi/LTzy8NF3BDo/maxresdefault.jpg","浪费","林宥嘉"));
+        musicTitleBeanList.add(new MusicTitleBean("http://jgospel.net/media/91839/.jpg","浪费","林宥嘉"));
         musicTitleBeanList.add(new MusicTitleBean("http://jgospel.net/media/59315/.jpg","轨迹","周杰伦"));
-        musicTitleBeanList.add(new MusicTitleBean("https://i.ytimg.com/vi/xSSwJ-0rIDU/maxresdefault.jpg","王子与公主","薛之谦"));
-        musicTitleBeanList.add(new MusicTitleBean("https://i.ytimg.com/vi/uYY1-ljMBVk/maxresdefault.jpg","喜帖街","谢安琪"));
+        musicTitleBeanList.add(new MusicTitleBean("http://www.168kk.com/uploads/allimg/170119/20-1F119164S9.jpg","王子与公主","薛之谦"));
+        musicTitleBeanList.add(new MusicTitleBean("http://jgospel.net/media/58473/.75783.bt.jpg","喜帖街","谢安琪"));
         musicTitleBeanList.add(new MusicTitleBean("http://pic.pimg.tw/prescott09/4a7c5e6258c40.jpg","失落沙洲","徐佳莹"));
-        musicTitleBeanList.add(new MusicTitleBean("https://i.ytimg.com/vi/9bJxHJBsh9g/hqdefault.jpg","遇见","孙燕姿"));
+        musicTitleBeanList.add(new MusicTitleBean("http://i1.sinaimg.cn/ent/2011/0507/S30718T1304769317695.jpg","遇见","孙燕姿"));
         musicTitleBeanList.add(new MusicTitleBean("http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=http://mmbiz.qpic.cn/mmbiz_jpg/RISgJ2lrXzwNugOB0PziaiaKcaz9usvwUOqFTOOnB4hn4UO0rIN1OJJQZaOBiae9u6mtdF6DEZbnWImn476ULQS7w/0?wx_fmt=jpeg","玩笑","刘瑞琦"));
         for(int i=10;i<num;i++){
             musicTitleBeanList.add(musicTitleBeanList.get(i%10));

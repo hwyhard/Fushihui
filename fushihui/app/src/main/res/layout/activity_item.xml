@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context="com.hwyhard.www.fushihui.activity.ItemActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
         android:orientation="horizontal"
         android:padding="4dp">
 
@@ -20,12 +20,9 @@
             android:layout_height="match_parent"
             android:text="@string/main_item_tag"
             android:textColor="@color/colorBlack"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text=" | "
+            android:background="@drawable/tag_shape"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
             android:textSize="24sp" />
 
         <TextView
@@ -35,6 +32,7 @@
             android:layout_marginLeft="4dp"
             android:text="绝命毒师"
             android:textColor="@color/colorBlack"
+            android:textStyle="bold"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -55,9 +53,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
-            android:text="两个老男人的狂奔,他们到底是为了什么?"
-            android:textColor="@color/colorBlack"
-            android:textSize="24sp" />
+            android:text="@string/breaking_bad_text"
+            android:padding="1dp"
+            android:textColor="@color/colorMainText"
+            android:textSize="20sp" />
     </ScrollView>
 
 </LinearLayout>

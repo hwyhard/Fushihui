@@ -19,4 +19,6 @@
     <color name="colorMenuBackground">#00695c</color>
     <color name="colorBlack">#000000</color>
     <color name="colorFabBack">#00796b</color>
+    <color name="colorTag">#fff9ca</color>
+    <color name="colorMainText">#424242</color>
 </resources>

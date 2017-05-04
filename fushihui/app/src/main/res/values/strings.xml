@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">浮世绘</string>
     <string name="main_item_tag">光影</string>
+    <string name="main_item_tag_read">悦读</string>
+    <string name="main_item_tag_music">天籁 </string>
+    <string name="main_item_tag_life">日子</string>
+    <string name="main_item_tag_history">往昔</string>
+    <string name="breaking_bad_text">当一个化学老师突然发现自己可以提取高纯度的冰毒，当正直壮年的自己突然身患绝症，当为家庭付出了一切的时候发现妻子出轨，当弥留之际尚有不能照顾自己的儿子，当生活的
+    所有矛头都指向钱的时候，平时的好好先生与桀骜不驯的问题学生因为毒品有了千丝万缕的联系。</string>
 </resources>
