@@ -14,7 +14,7 @@ public class MyFragmentAdapter extends FragmentStatePagerAdapter {
     //初始化fragment列表
     private List<Fragment> fragmentList;
     //初始化tab标签列表
-    private String title[] = new String[]{"万象","知乎","豆瓣"};
+    private String title[] = new String[]{"万象","知乎","天籁"};
     public MyFragmentAdapter(FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);
         this.fragmentList = fragmentList;

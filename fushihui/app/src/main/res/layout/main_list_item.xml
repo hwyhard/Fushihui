@@ -8,7 +8,7 @@
         app:cardCornerRadius="14dp"
         app:cardElevation="4dp"
         app:cardMaxElevation="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:foreground="?attr/selectableItemBackground">
@@ -28,7 +28,7 @@
                     android:id="@+id/list_item_primarytitle"
                     android:layout_width="match_parent"
                     style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:text="理想到底能走多远？"
                     android:layout_marginLeft="30dp"
                     android:textSize="24sp"
@@ -38,7 +38,7 @@
                     android:id="@+id/list_item_subtitle"
                     android:layout_below="@id/list_item_primarytitle"
                     android:layout_alignLeft="@id/list_item_primarytitle"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:text="你劝我灭了心中的火。 "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

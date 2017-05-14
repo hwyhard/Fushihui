@@ -72,7 +72,7 @@ public class ZhiHuActivity extends AppCompatActivity {
                 //网络请求
                 try {
                     jsonText = netUtil.run(url);
-                    Log.d("ZhiHuNet",jsonText);
+                    Log.d("ZhiHuNetJ",jsonText);
                     Gson gson = new Gson();
                     final ZhiHuContentBean zhiHuContentBean = gson.fromJson(jsonText,ZhiHuContentBean.class);
                     Log.d("ZhiHuNet",zhiHuContentBean.getType()+"");
