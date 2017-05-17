@@ -58,13 +58,9 @@ public class ZhiHuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_zhihu, null);
         mContext = getContext();
         pullLoadMoreRecyclerView = (PullLoadMoreRecyclerView) view.findViewById(R.id.zhihuRv);
-//        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.zhihu_swipe_refresh);
-//        linearLayoutManager = new LinearLayoutManager(mContext);
         url = "http://news-at.zhihu.com/api/4/news/latest";
         beforeUrlHead = "http://news-at.zhihu.com/api/4/news/before/";
-//        pullLoadMoreRecyclerView.setHasFixedSize(true);
         pullLoadMoreRecyclerView.setLinearLayout();
-//        pullLoadMoreRecyclerView.setLayoutManager(linearLayoutManager);
         netUtil = new NetUtil();
         handler = new Handler();
         totalDate = "昨天的日期";
@@ -84,49 +80,17 @@ public class ZhiHuFragment extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        Log.d("nowDate2",totalDate);
-        //下拉刷新
-        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(mContext,"正在刷新",Toast.LENGTH_SHORT).show();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        requestNews();
-                    }
-                }).start();
-                //设置动画时间为2s
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-                    }
-                },2000);
-            }
-
-            @Override
-            public void onLoadMore() {
-                loadMoreDate();
-                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-//                    }
-//                },3000);
-            }
-        });
+        initReandPull();
         return view;
     }
+
     //加载更多数据的方法
-    public void loadMoreDate(){
+    public void loadMoreDate() {
         Date date = DateUtil.StringToDate(totalDate);
-        date.setDate(date.getDate()-1);
+        date.setDate(date.getDate() - 1);
         String newDate = DateUtil.DateToString(date);
         totalDate = newDate;
-        Log.d("NewDateTest",newDate+"");
+        Log.d("NewDateTest", newDate + "");
         beforeUrl = beforeUrlHead + newDate;
         Thread beforeRequsetThread = new Thread(new Runnable() {
             @Override
@@ -140,7 +104,7 @@ public class ZhiHuFragment extends Fragment {
                         //新请求到的消息队列
                         List<ZhiHuBean.ZhiHuStory> addList = zhiHuBean.stories;
                         //将新消息加入原始消息对队列
-                        for(ZhiHuBean.ZhiHuStory zhiHuStory:addList){
+                        for (ZhiHuBean.ZhiHuStory zhiHuStory : addList) {
                             zhiHuStoryList.add(zhiHuStory);
                         }
                         //向handler发送处理请求操作
@@ -163,8 +127,9 @@ public class ZhiHuFragment extends Fragment {
         beforeRequsetThread.start();
 
     }
+
     //事件的点击方法
-    public void onItemClick(){
+    public void onItemClick() {
         zhiHuTitleAdapter.setOnItemCliclListener(new ZhiHuTitleAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
@@ -180,8 +145,9 @@ public class ZhiHuFragment extends Fragment {
             }
         });
     }
+
     //获得最新网络请求的方法
-    public void requestNews(){
+    public void requestNews() {
         //进行网络请求
         try {
             jsonText = netUtil.run(url);
@@ -191,8 +157,9 @@ public class ZhiHuFragment extends Fragment {
         Gson gson = new Gson();
         ZhiHuBean zhiHuBean = gson.fromJson(jsonText, ZhiHuBean.class);
         zhiHuStoryList = zhiHuBean.stories;
+        Log.d("ZhiHuListSize1", zhiHuStoryList.size() + "");
         totalDate = zhiHuBean.getDate();
-        Log.d("nowDate1",totalDate+" ");
+        Log.d("nowDate1", totalDate + " ");
         Log.d("ZhiHuStory", zhiHuStoryList.get(0).getImages() + "");
         //向handler发送处理请求操作
         handler.post(new Runnable() {
@@ -207,8 +174,41 @@ public class ZhiHuFragment extends Fragment {
         });
     }
 
+    //设置下拉刷新和上拉加载
+    public void initReandPull() {
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(mContext, "正在刷新", Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        requestNews();
+                    }
+                }).start();
+                //设置动画时间为2s
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    }
+                }, 2000);
+                Toast.makeText(mContext, "刷新完毕", Toast.LENGTH_SHORT).show();
+            }
 
-
+            @Override
+            public void onLoadMore() {
+                loadMoreDate();
+                pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+//                    }
+//                },3000);
+            }
+        });
+    }
 
 
 }

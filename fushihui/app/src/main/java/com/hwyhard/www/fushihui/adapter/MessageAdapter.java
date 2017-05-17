@@ -55,7 +55,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder>{
 //                .placeholder(R.drawable.test_pic1)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .into(holder.itemPicIv);
-        holder.itemSubTv.setText(messageBean.getItemSubtitle());
+        holder.itemSubTv.setText(messageBean.getItemSubTitle());
         holder.itemPrimatyTv.setText(messageBean.getItemPrimaryTitle());
         holder.itemDateTv.setText(messageBean.getItemDate());
         Log.d("NowShowedItem",position+"");

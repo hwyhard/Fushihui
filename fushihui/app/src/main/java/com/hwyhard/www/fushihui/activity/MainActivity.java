@@ -15,6 +15,8 @@ import com.hwyhard.www.fushihui.fragment.ZhiHuFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+
 public class MainActivity extends FragmentActivity {
     List<Fragment> fragmentList;
     ViewPager viewPager;
@@ -26,6 +28,8 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         //为所有的fragment创建列表
         fragmentList = new ArrayList<>();
+        //初始化Bmob
+        Bmob.initialize(this,"9e09da5d567ea31a5f00de06612a8d43");
         viewPager = (ViewPager) findViewById(R.id.main_viewPager);
         //实例化所有的fragment
         MainFragment mainFragment = new MainFragment();

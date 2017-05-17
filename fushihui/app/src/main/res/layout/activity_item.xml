@@ -18,11 +18,12 @@
             android:id="@+id/main_item_tag"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/main_item_tag"
-            android:textColor="@color/colorBlack"
             android:background="@drawable/tag_shape"
             android:paddingLeft="1dp"
             android:paddingRight="1dp"
+            android:text="@string/main_item_tag"
+            android:textColor="@color/colorBlack"
+            android:layout_gravity="center_vertical"
             android:textSize="24sp" />
 
         <TextView
@@ -32,15 +33,23 @@
             android:layout_marginLeft="4dp"
             android:text="绝命毒师"
             android:textColor="@color/colorBlack"
-            android:textStyle="bold"
-            android:textSize="24sp" />
+            android:layout_gravity="center_vertical"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
-
+    <View
+        android:id="@+id/title_dash"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layerType="software"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/dash_line"
+        />
 
     <ImageView
         android:id="@+id/item_activity_pic"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:scaleType="centerCrop" />
 
     <ScrollView
