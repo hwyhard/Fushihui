@@ -53,8 +53,8 @@ public class MainFragment extends Fragment {
     public List<MessageBean> messageBeanList;
     //消息适配器
     MessageAdapter messageAdapter;
-    int number = 0;
-
+    final static String MSC_ID = "mscID";
+    final static String MSC_TAG = "mscTag";
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, null);
@@ -98,8 +98,15 @@ public class MainFragment extends Fragment {
         messageAdapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(mContext, "click----->" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, ItemActivity.class);
+                //获取mscId用于查询详情
+                String mscId = messageBeanList.get(position).getMscId();
+                String mscTag = messageBeanList.get(position).getItemTag();
+                Bundle bundle = new Bundle();
+                //用bundle传递出去
+                bundle.putString(MSC_ID,mscId);
+                bundle.putString(MSC_TAG,mscTag);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

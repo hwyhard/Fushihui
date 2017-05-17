@@ -13,6 +13,16 @@ public class MessageBean extends BmobObject{
     private String itemSubTitle;//副标题
     private String itemDate;//日期
     private String itemTag;//标签
+    private String mscId;//message的id
+
+    public String getMscId() {
+        return mscId;
+    }
+
+    public void setMscId(String mscId) {
+        this.mscId = mscId;
+    }
+
 
     public String getItemTag() {
         return itemTag;
