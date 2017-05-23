@@ -44,7 +44,6 @@
             android:id="@+id/title_dash"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/dash_line"
             android:layerType="software" />
 
@@ -52,11 +51,15 @@
             android:id="@+id/item_activity_pic"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
             android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/main_item_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingMultiplier="1.2"
             android:padding="4dp"

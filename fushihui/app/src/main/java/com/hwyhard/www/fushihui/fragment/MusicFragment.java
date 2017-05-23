@@ -1,9 +1,9 @@
 package com.hwyhard.www.fushihui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hwyhard.www.fushihui.R;
+import com.hwyhard.www.fushihui.activity.MusicActivity;
 import com.hwyhard.www.fushihui.adapter.MusicTitleAdapter;
 import com.hwyhard.www.fushihui.bean.MusicTitleBean;
 import com.hwyhard.www.fushihui.utils.SpaceItemDecoration;
@@ -35,7 +36,7 @@ public class MusicFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music,null);
-        mContext = getActivity();
+        mContext = getContext();
         musicRv = (RecyclerView) view.findViewById(R.id.music_fragment_rv);
         //设置间隔
         SpaceItemDecoration spaceItemDecoration = new SpaceItemDecoration(16);
@@ -50,7 +51,8 @@ public class MusicFragment extends Fragment{
         musicTitleAdapter.setOnItemClickListener(new MusicTitleAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, int position) {
-                Snackbar.make(musicRv,"第"+position+"首歌",Snackbar.LENGTH_LONG).show();
+                Intent intent = new Intent(mContext, MusicActivity.class);
+                startActivity(intent);
             }
         });
         musicRv.setAdapter(musicTitleAdapter);
