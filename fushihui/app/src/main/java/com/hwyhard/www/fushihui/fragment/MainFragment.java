@@ -199,7 +199,7 @@ public class MainFragment extends Fragment {
     public void requestMessage() {
         //查询数据库中所有数据
         BmobQuery<MessageBean> query = new BmobQuery<MessageBean>();
-        query.setLimit(20)
+        query.setLimit(50)
                 .findObjects(new FindListener<MessageBean>() {
                     @Override
                     public void done(List<MessageBean> list, BmobException e) {

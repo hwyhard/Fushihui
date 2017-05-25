@@ -30,7 +30,13 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     ImageView playBtn;
     TextView startTv;
     TextView endTv;
+    TextView lrcTv;
+    TextView songTv;
+    TextView singerTv;
     SeekBar seekBar;
+    String musicId;
+    String musicSong;
+    String musicSinger;
     private final int MUSIC_FINISH = 1000;
     private MusicPlay musicPlay;
     private SimpleDateFormat format;
@@ -65,18 +71,26 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         startTv = (TextView) findViewById(R.id.music_start);
         endTv = (TextView) findViewById(R.id.music_end);
         seekBar = (SeekBar) findViewById(R.id.music_bar);
+        lrcTv = (TextView)findViewById(R.id.music_lrc);
+        songTv = (TextView) findViewById(R.id.music_song);
+        singerTv = (TextView) findViewById(R.id.music_singer);
         initListener();
         initView();
+        Bundle bundle = getIntent().getExtras();
+        musicId = bundle.getString("musicId");
+        musicSong = bundle.getString("musicSong");
+        musicSinger = bundle.getString("musicSinger");
         new Thread(new Runnable() {
             @Override
             public void run() {
                 final BmobQuery<MusicItem> query = new BmobQuery<>();
-                query.getObject("rYHs888B", new QueryListener<MusicItem>() {
+                query.getObject(musicId, new QueryListener<MusicItem>() {
                     @Override
                     public void done(MusicItem musicItem, BmobException e) {
                         if(e == null){
                             final String musicPic = musicItem.getMusicPic();
                             final String musicUrl = musicItem.getMusicUrl();
+                            final String musciLrc = musicItem.getMusicLrc();
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -85,6 +99,9 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
                                             .diskCacheStrategy(DiskCacheStrategy.RESULT)
                                             .into(musicPicIw);
                                     musicPlay.setMusicUrl(musicUrl);
+                                    songTv.setText(musicSong);
+                                    singerTv.setText(musicSinger);
+                                    lrcTv.setText(musciLrc);
                                 }
                             });
                         }

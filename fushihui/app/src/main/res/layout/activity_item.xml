@@ -26,7 +26,7 @@
                 android:background="@drawable/tag_shape"
                 android:paddingLeft="1dp"
                 android:paddingRight="1dp"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="24sp" />
 
             <TextView

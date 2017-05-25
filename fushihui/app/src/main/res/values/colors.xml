@@ -22,7 +22,7 @@
     <color name="colorTag">#fff9ca</color>
     <color name="colorMainText">#424242</color>
     <color name="colorItemTagMovie">#ce93d8</color>
-    <color name="colorItemTagHistory">#fff59d</color>
+    <color name="colorItemTagHistory">#8d6e63</color>
     <color name="colorItemTagRead">#80deea</color>
     <color name="colorItemTagLife">#f06292</color>
 </resources>
