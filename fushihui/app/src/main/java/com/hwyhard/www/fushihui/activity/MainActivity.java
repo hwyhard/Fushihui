@@ -44,8 +44,10 @@ public class MainActivity extends FragmentActivity {
         viewPager.setAdapter(myFragmentAdapter);
         //绑定TabLayout
         tabLayout.setupWithViewPager(viewPager);
-
     }
-
+    //fragment 跳转方法
+    public void change_fragment(int id){
+        viewPager.setCurrentItem(id);
+    }
 
 }

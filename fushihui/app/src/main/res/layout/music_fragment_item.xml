@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="140dp"
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     >
     <ImageView
         android:id="@+id/music_title_image"
@@ -10,33 +10,34 @@
         android:scaleType="centerCrop"
         />
     <TextView
-        android:id="@+id/music_title_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:textColor="@color/colorBlack"
-        android:textStyle="italic"
-        android:layout_alignBottom="@id/music_title_image"
-        android:layout_marginBottom="40dp"
-        android:background="#66ffffff"
-        android:gravity="center_horizontal"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:layout_centerHorizontal="true"
-        />
-    <TextView
         android:id="@+id/music_title_singer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="#424242"
         android:shadowColor="#ffffff"
-        android:layout_alignTop="@id/music_title_name"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         android:shadowDx="3"
         android:shadowDy="3"
         android:shadowRadius="6"
+        android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
         />
+    <TextView
+        android:id="@+id/music_title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="italic"
+        android:background="@drawable/tag_music_title"
+        android:layout_above="@id/music_title_singer"
+        android:gravity="center_horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_centerHorizontal="true"
+        />
+
 
 </RelativeLayout>

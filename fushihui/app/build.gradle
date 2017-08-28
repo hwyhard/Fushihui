@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        fushihui_sign_apk {
+            keyAlias 'fushihui'
+            keyPassword 'hwy7211'
+            storeFile file('/Users/hwyhard/soft/apkey/apKey.jks')
+            storePassword 'hwy721'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {

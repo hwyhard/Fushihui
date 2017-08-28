@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.hwyhard.www.fushihui.R;
 import com.hwyhard.www.fushihui.activity.ItemActivity;
+import com.hwyhard.www.fushihui.activity.MainActivity;
 import com.hwyhard.www.fushihui.adapter.MessageAdapter;
 import com.hwyhard.www.fushihui.bean.MessageBean;
 import com.melnykov.fab.FloatingActionButton;
@@ -25,12 +26,12 @@ import com.tiancaicc.springfloatingactionmenu.SpringFloatingActionMenu;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 
 /**
@@ -51,6 +52,14 @@ public class MainFragment extends Fragment {
     Handler handler;
     //主消息列表
     public List<MessageBean> messageBeanList;
+    //影视列表
+    public List<MessageBean> movieBeanList;
+    //生活列表
+    public List<MessageBean> lifeBeanList;
+    //历史列表
+    public List<MessageBean> historyBeanList;
+    //阅读列表
+    public List<MessageBean> readBeanList;
     //消息适配器
     MessageAdapter messageAdapter;
     final static String MSC_ID = "mscID";
@@ -63,6 +72,10 @@ public class MainFragment extends Fragment {
         messageRv = (PullLoadMoreRecyclerView) view.findViewById(R.id.main_rv_list);
         //初始化messageList
         messageBeanList = new ArrayList<>();
+        movieBeanList = new ArrayList<>();
+        lifeBeanList = new ArrayList<>();
+        historyBeanList = new ArrayList<>();
+        readBeanList = new ArrayList<>();
         messageRv.setLinearLayout();
         handler = new Handler();
         //开启网络请求线程
@@ -97,15 +110,17 @@ public class MainFragment extends Fragment {
     public void onItemClick() {
         messageAdapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position,List<MessageBean> list) {
                 Intent intent = new Intent(mContext, ItemActivity.class);
                 //获取mscId用于查询详情
-                String mscId = messageBeanList.get(position).getMscId();
-                String mscTag = messageBeanList.get(position).getItemTag();
+                List<MessageBean> nowList = list;
+                MessageBean messageBean = nowList.get(position);
+                String mscId = messageBean.getMscId();
+                String mscTag = messageBean.getItemTag();
                 Bundle bundle = new Bundle();
                 //用bundle传递出去
-                bundle.putString(MSC_ID,mscId);
-                bundle.putString(MSC_TAG,mscTag);
+                bundle.putString(MSC_ID, mscId);
+                bundle.putString(MSC_TAG, mscTag);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -114,6 +129,7 @@ public class MainFragment extends Fragment {
 
     //创建fabItem点击事件
     public View.OnClickListener createFabListener() {
+        final MainActivity mainActivity = (MainActivity) getActivity();
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,32 +137,85 @@ public class MainFragment extends Fragment {
                 String tag = (String) menuItem.getLabelTextView().getText();
                 switch (tag) {
                     case "随便看看": {
-
                         randomList();
                         messageAdapter = new MessageAdapter(messageBeanList);
                         onItemClick();
                         messageRv.setAdapter(messageAdapter);
                         springFloatingActionMenu.hideMenu();
+                        mainActivity.change_fragment(0);
                         break;
                     }
                     case "影视": {
                         BmobQuery<MessageBean> query = new BmobQuery<>();
-                        query.count(MessageBean.class, new CountListener() {
-                            @Override
-                            public void done(Integer integer, BmobException e) {
-                                Log.d("queryCount", "一共有：" + integer + "条数据");
-                                springFloatingActionMenu.hideMenu();
-                            }
-                        });
+                        query.addWhereEqualTo("itemTag","光影").setLimit(50)
+                                .findObjects(new FindListener<MessageBean>() {
+                                    @Override
+                                    public void done(List<MessageBean> list, BmobException e) {
+                                        movieBeanList = list;
+                                        messageAdapter = new MessageAdapter(movieBeanList);
+                                        onItemClick();
+                                        messageRv.setAdapter(messageAdapter);
+                                        springFloatingActionMenu.hideMenu();
+                                        mainActivity.change_fragment(0);
+                                    }
+                                });
+
                         break;
                     }
-                    case "音乐":
+                    case "音乐":{
+                        mainActivity.change_fragment(2);
+                        springFloatingActionMenu.hideMenu();
+                    }
                         break;
-                    case "阅读":
+                    case "阅读":{
+                        BmobQuery<MessageBean> query = new BmobQuery<>();
+                        query.addWhereEqualTo("itemTag","致知").setLimit(50)
+                                .findObjects(new FindListener<MessageBean>() {
+                                    @Override
+                                    public void done(List<MessageBean> list, BmobException e) {
+                                        readBeanList = list;
+                                        messageAdapter = new MessageAdapter(readBeanList);
+                                        onItemClick();
+                                        messageRv.setAdapter(messageAdapter);
+                                        springFloatingActionMenu.hideMenu();
+                                        mainActivity.change_fragment(0);
+                                    }
+                                });
+                    }
                         break;
-                    case "生活":
+                    case "生活":{
+                        BmobQuery<MessageBean> query = new BmobQuery<>();
+                        String lifeTags[] = {"好物","体育"};
+                        query.addWhereContainedIn("itemTag", Arrays.asList(lifeTags)).setLimit(50)
+                                .findObjects(new FindListener<MessageBean>() {
+                                    @Override
+                                    public void done(List<MessageBean> list, BmobException e) {
+                                        lifeBeanList = list;
+                                        messageAdapter = new MessageAdapter(lifeBeanList);
+                                        onItemClick();
+                                        messageRv.setAdapter(messageAdapter);
+                                        springFloatingActionMenu.hideMenu();
+                                        mainActivity.change_fragment(0);
+                                    }
+                                });
+                    }
                         break;
                     case "历史":
+                    {
+                        BmobQuery<MessageBean> query = new BmobQuery<>();
+                        query.addWhereEqualTo("itemTag","沧海").setLimit(50)
+                                .findObjects(new FindListener<MessageBean>() {
+                                    @Override
+                                    public void done(List<MessageBean> list, BmobException e) {
+                                        historyBeanList = list;
+                                        messageAdapter = new MessageAdapter(historyBeanList);
+                                        onItemClick();
+                                        messageRv.setAdapter(messageAdapter);
+                                        springFloatingActionMenu.hideMenu();
+                                        mainActivity.change_fragment(0);
+                                    }
+                                });
+                    }
                         break;
                     default:
                         break;

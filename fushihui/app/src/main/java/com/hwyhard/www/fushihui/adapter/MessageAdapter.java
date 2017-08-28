@@ -65,7 +65,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder>{
                 @Override
                 public void onClick(View view) {
                     int position = holder.getLayoutPosition();
-                    onItemClickListener.onItemClick(holder.itemView,position);
+                    onItemClickListener.onItemClick(holder.itemView,position,messageBeanList);
                 }
             });
         }
@@ -77,7 +77,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder>{
     }
     //新建一个内部接口处理点击事件
     public interface OnItemClickListener{
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position,List<MessageBean> list);
     }
     //set用户设置的监听器
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
